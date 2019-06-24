@@ -1,0 +1,18 @@
+{
+  "name": "update-prefetch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "tree-sitter": "^0.15.7",
+    "tree-sitter-nix": "github:cstrahan/tree-sitter-nix#791b5ff0e4f0da358cbb941788b78d436a2ca621"
+  }
+}
