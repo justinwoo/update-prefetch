@@ -1,7 +1,10 @@
 sudo: required
 dist: trusty
 language: nix
-script: nix-shell travis.nix --run 'npm run ci'
+script:
+  - nix-shell travis.nix --run 'npm run ci'
+  - nix-build -j 100
+  - result/bin/update-prefetch test/fetch-url.nix
 cache:
   directories:
   - node_modules
