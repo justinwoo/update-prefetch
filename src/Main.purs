@@ -28,24 +28,25 @@ main :: Effect Unit
 main = launchAff_ do
   case Array.index argv 2 of
     Nothing -> error needFileArg
-    Just fileName -> do
-      contents <- readTextFile UTF8 fileName
-      let root = rootNode $ parse parser contents
-      let eNodes = readNode `traverse` children root
-      case eNodes of
-        Right nodes -> do
-          nodes' <- for nodes \node -> do
-            updateFetchAttrs node
+    Just fileName -> runUpdate fileName
 
-          let output = Array.intercalate "\n" $ printExpr <$> nodes'
+runUpdate :: String -> Aff Unit
+runUpdate fileName = do
+  contents <- readTextFile UTF8 fileName
+  let root = rootNode $ parse parser contents
+  let eNodes = readNode `traverse` children root
+  case eNodes of
+    Right nodes -> do
+      nodes' <- for nodes \node -> do
+        updateFetchAttrs node
 
-          writeTextFile UTF8 fileName output
-          error $ "updated " <> fileName <> "."
+      let output = Array.intercalate "\n" $ printExpr <$> nodes'
 
-          processExit 0
-        Left _ -> do
-          error "encountered errors in parsing input file."
-          processExit 1
+      writeTextFile UTF8 fileName output
+      error $ "updated " <> fileName <> "."
+    Left _ -> do
+      error "encountered errors in parsing input file."
+      processExit 1
 
 needFileArg :: String
 needFileArg = """

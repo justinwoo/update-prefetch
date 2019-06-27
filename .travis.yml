@@ -2,3 +2,10 @@ sudo: required
 dist: trusty
 language: nix
 script: nix-shell travis.nix --run 'npm run ci'
+cache:
+  directories:
+  - node_modules
+  - .spago
+  - output
+  - ~/.cache/dhall
+  - ~/.cache/spago

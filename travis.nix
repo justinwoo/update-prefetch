@@ -11,5 +11,10 @@ let
 in pkgs.stdenv.mkDerivation {
   name = "travis-shell";
 
-  buildInputs = [ pkgs.nodejs easy-ps.purs easy-ps.spago ];
+  buildInputs = [
+    pkgs.nodejs
+    pkgs.nix-prefetch-git
+    easy-ps.purs
+    easy-ps.spago
+  ];
 }
