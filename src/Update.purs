@@ -16,9 +16,11 @@ import Sunde as S
 
 data FetchType
   = GitHub { owner :: String, repo :: String }
+  | Url { url :: String }
 
 data Update
   = GitHubUpdate { owner :: String, repo :: String, rev :: String, sha256 :: String }
+  | UrlUpdate { url :: String, sha256 :: String }
 
 readFetchType :: Array Expr -> Maybe FetchType
 readFetchType attrs
@@ -29,6 +31,11 @@ readFetchType attrs
   , _ <- match "rev" binds
   , _ <- match "sha256" binds
   = Just $ GitHub { owner, repo }
+  | 2 == Array.length attrs
+  , binds <- Array.mapMaybe getBind attrs
+  , Just url <- stripQuotes <$> match "url" binds
+  , _ <- match "sha256" binds
+  = Just $ Url { url }
   | otherwise = Nothing
 
 getUpdate :: FetchType -> Aff Update
@@ -40,6 +47,13 @@ getUpdate (GitHub {owner, repo}) = do
     }
   {rev,sha256} <- readPrefetchGitResult json
   pure $ GitHubUpdate { owner, repo, rev, sha256}
+getUpdate (Url {url}) = do
+  error $ "updating url fetch: " <> url
+  sha256 <- String.trim <$> runCommand
+    { cmd: "nix-prefetch-url"
+    , args: [ url ]
+    }
+  pure $ UrlUpdate { url, sha256 }
 
 makeAttrSet :: Update -> Expr
 makeAttrSet (GitHubUpdate {owner, repo, rev, sha256}) =
@@ -47,6 +61,11 @@ makeAttrSet (GitHubUpdate {owner, repo, rev, sha256}) =
     [ Bind (AttrPath "owner") (StringValue $ show owner)
     , Bind (AttrPath "repo") (StringValue $ show repo)
     , Bind (AttrPath "rev") (StringValue $ show rev)
+    , Bind (AttrPath "sha256") (StringValue $ show sha256)
+    ]
+makeAttrSet (UrlUpdate {url, sha256}) =
+  AttrSet
+    [ Bind (AttrPath "url") (StringValue $ show url)
     , Bind (AttrPath "sha256") (StringValue $ show sha256)
     ]
 
