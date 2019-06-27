@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "test"
+  "bin": {
+    "update-prefetch": "bin/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mkbin": "mkdir -p bin && spago bundle-app --to bin/output.js",
+    "ci": "npm i && spago install && spago test",
+    "test": "spago test"
+  },
+  "directories": {
+    "test": "test"
   },
   "author": "",
   "license": "MIT",
