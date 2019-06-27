@@ -1,5 +1,7 @@
 # Update-Prefetch
 
+[![Build Status](https://travis-ci.com/justinwoo/update-prefetch.svg?branch=master)](https://travis-ci.com/justinwoo/update-prefetch)
+
 Update fetch SHAs in Nix derivations with less pain.
 
 ## Usage
