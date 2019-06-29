@@ -17,10 +17,12 @@ import Sunde as S
 data FetchType
   = GitHub { owner :: String, repo :: String }
   | Url { url :: String }
+  | Tarball { name :: String, url :: String }
 
 data Update
   = GitHubUpdate { owner :: String, repo :: String, rev :: String, sha256 :: String }
   | UrlUpdate { url :: String, sha256 :: String }
+  | TarballUpdate { name :: String, url :: String, sha256 :: String }
 
 readFetchType :: Array Expr -> Maybe FetchType
 readFetchType attrs
@@ -36,6 +38,12 @@ readFetchType attrs
   , Just url <- stripQuotes <$> match "url" binds
   , _ <- match "sha256" binds
   = Just $ Url { url }
+  | 3 == Array.length attrs
+  , binds <- Array.mapMaybe getBind attrs
+  , Just name <- stripQuotes <$> match "name" binds
+  , Just url <- stripQuotes <$> match "url" binds
+  , _ <- match "sha256" binds
+  = Just $ Tarball { name, url }
   | otherwise = Nothing
 
 getUpdate :: FetchType -> Aff Update
@@ -54,6 +62,13 @@ getUpdate (Url {url}) = do
     , args: [ url ]
     }
   pure $ UrlUpdate { url, sha256 }
+getUpdate (Tarball {name, url}) = do
+  error $ "updating Tarball fetch: " <> url
+  sha256 <- String.trim <$> runCommand
+    { cmd: "nix-prefetch-url"
+    , args: [ url, "--unpack" ]
+    }
+  pure $ TarballUpdate { name, url, sha256 }
 
 makeAttrSet :: Update -> Expr
 makeAttrSet (GitHubUpdate {owner, repo, rev, sha256}) =
@@ -66,6 +81,12 @@ makeAttrSet (GitHubUpdate {owner, repo, rev, sha256}) =
 makeAttrSet (UrlUpdate {url, sha256}) =
   AttrSet
     [ Bind (AttrPath "url") (StringValue $ show url)
+    , Bind (AttrPath "sha256") (StringValue $ show sha256)
+    ]
+makeAttrSet (TarballUpdate {name, url, sha256}) =
+  AttrSet
+    [ Bind (AttrPath "name") (StringValue $ show name)
+    , Bind (AttrPath "url") (StringValue $ show url)
     , Bind (AttrPath "sha256") (StringValue $ show sha256)
     ]
 

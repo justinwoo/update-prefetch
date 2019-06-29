@@ -12,4 +12,5 @@ main = Aff.launchAff_ do
   runUpdate "travis.nix"
   runUpdate "test/fetch-github.nix"
   runUpdate "test/fetch-url.nix"
+  runUpdate "test/fetch-tarball.nix"
   log "done"
