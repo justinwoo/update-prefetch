@@ -115,13 +115,11 @@ runCommand {cmd, args} = do
       Aff.throwError $ Aff.error result.stderr
 
 updateFetchAttrs :: Expr -> Aff Expr
-updateFetchAttrs (AttrSet attrs) = do
-  case readFetchType attrs of
-    Just fetchType -> do
-      update <- getUpdate fetchType
-      pure $ makeAttrSet update
-    Nothing -> do
-      pure (AttrSet attrs)
+updateFetchAttrs (AttrSet attrs)
+  | Just fetchType <- readFetchType attrs
+  = do
+    update <- getUpdate fetchType
+    pure $ makeAttrSet update
 updateFetchAttrs e = immediate updateFetchAttrs e
 
 immediate :: forall f. Applicative f => (Expr -> f Expr) -> Expr -> f Expr
