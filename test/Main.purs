@@ -13,4 +13,5 @@ main = Aff.launchAff_ do
   runUpdate "test/fetch-github.nix"
   runUpdate "test/fetch-url.nix"
   runUpdate "test/fetch-tarball.nix"
+  runUpdate "test/fetch-nested-set.nix"
   log "done"

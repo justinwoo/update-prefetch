@@ -67,13 +67,13 @@ let
         sha1 = "f8f78b76789888ef39f205cd637f68e702122b2c";
       };
     };
-    "chownr-1.1.1" = {
+    "chownr-1.1.2" = {
       name = "chownr";
       packageName = "chownr";
-      version = "1.1.1";
+      version = "1.1.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/chownr/-/chownr-1.1.1.tgz";
-        sha512 = "j38EvO5+LHX84jlo6h4UzmOwi0UgW61WRyPtJz4qaadK5eY3BTS5TY/S1Stc3Uk2lIM6TPevAlULiEJwie860g==";
+        url = "https://registry.npmjs.org/chownr/-/chownr-1.1.2.tgz";
+        sha512 = "GkfeAQh+QNy3wquu9oIZr6SS5x7wGdSgNQvD10X3r+AZr1Oys22HW8kAmDMvNg2+Dm0TeGaEuO8gFwdBXxwO8A==";
       };
     };
     "code-point-at-1.1.0" = {
@@ -283,13 +283,13 @@ let
         sha512 = "boQj1WFgQH3v4clhu3mTNfP+vOBxorDlE8EKiMjUlLG3C4qAESnn9AxIOkFgTR2c9LtzNjPrjS60cT27ZKBhaA==";
       };
     };
-    "node-abi-2.9.0" = {
+    "node-abi-2.10.0" = {
       name = "node-abi";
       packageName = "node-abi";
-      version = "2.9.0";
+      version = "2.10.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/node-abi/-/node-abi-2.9.0.tgz";
-        sha512 = "jmEOvv0eanWjhX8dX1pmjb7oJl1U1oR4FOh0b2GnvALwSYoOdU7sj+kLDSAyjo4pfC9aj/IxkloxdLJQhSSQBA==";
+        url = "https://registry.npmjs.org/node-abi/-/node-abi-2.10.0.tgz";
+        sha512 = "OT0WepUvYHXdki6DU8LWhEkuo3M44i2paWBYtH9qXtPb9YiKlYEKa5WUII20XEcOv7UJPzfB0kZfPZdW46zdkw==";
       };
     };
     "noop-logger-0.1.1" = {
@@ -526,13 +526,13 @@ let
         sha512 = "aBdFQrQWodjA4MEC7JwPw3M0vhcL3BD4Ivj5jmL6Y8aThGdFxjO0YJzo+//yK8O5RHvfA6rgJa5CYZ2z4qzQrw==";
       };
     };
-    "tree-sitter-0.15.7" = {
+    "tree-sitter-0.15.8" = {
       name = "tree-sitter";
       packageName = "tree-sitter";
-      version = "0.15.7";
+      version = "0.15.8";
       src = fetchurl {
-        url = "https://registry.npmjs.org/tree-sitter/-/tree-sitter-0.15.7.tgz";
-        sha512 = "8qH1ID5RX6MrjzIqGXSD4+UUK5aO7VcA6CtYCMZ2G4WEmiLJUhq7SyazKKulqsYsJmf5lGmZiYuqgjkGeXbPzQ==";
+        url = "https://registry.npmjs.org/tree-sitter/-/tree-sitter-0.15.8.tgz";
+        sha512 = "nd/w2YywPkZHTrzqspVBPTFDAtihuc9WE+h5n/2vfPLYt5B28In4AcMzvwhf7sZZ0JQeeBSFuwChCnBna++UcQ==";
       };
     };
     "tree-sitter-nix-git://github.com/cstrahan/tree-sitter-nix#791b5ff0e4f0da358cbb941788b78d436a2ca621" = {
@@ -590,13 +590,13 @@ let
         sha1 = "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f";
       };
     };
-    "xtend-4.0.1" = {
+    "xtend-4.0.2" = {
       name = "xtend";
       packageName = "xtend";
-      version = "4.0.1";
+      version = "4.0.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/xtend/-/xtend-4.0.1.tgz";
-        sha1 = "a5c6d532be656e23db820efb943a1f04998d63af";
+        url = "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz";
+        sha512 = "LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==";
       };
     };
   };
@@ -613,7 +613,7 @@ let
       sources."buffer-alloc-1.2.0"
       sources."buffer-alloc-unsafe-1.1.0"
       sources."buffer-fill-1.0.0"
-      sources."chownr-1.1.1"
+      sources."chownr-1.1.2"
       sources."code-point-at-1.1.0"
       sources."console-control-strings-1.1.0"
       sources."core-util-is-1.0.2"
@@ -640,7 +640,7 @@ let
       })
       sources."nan-2.14.0"
       sources."napi-build-utils-1.0.1"
-      sources."node-abi-2.9.0"
+      sources."node-abi-2.10.0"
       sources."noop-logger-0.1.1"
       sources."npmlog-4.1.2"
       sources."number-is-nan-1.0.1"
@@ -669,7 +669,7 @@ let
       })
       sources."tar-stream-1.6.2"
       sources."to-buffer-1.1.1"
-      sources."tree-sitter-0.15.7"
+      sources."tree-sitter-0.15.8"
       (sources."tree-sitter-nix-git://github.com/cstrahan/tree-sitter-nix#791b5ff0e4f0da358cbb941788b78d436a2ca621" // {
         dependencies = [
           sources."tree-sitter-0.14.0"
@@ -680,7 +680,7 @@ let
       sources."which-pm-runs-1.0.0"
       sources."wide-align-1.1.3"
       sources."wrappy-1.0.2"
-      sources."xtend-4.0.1"
+      sources."xtend-4.0.2"
     ];
     buildInputs = globalBuildInputs;
     meta = {
