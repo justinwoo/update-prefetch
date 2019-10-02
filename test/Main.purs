@@ -9,7 +9,7 @@ import Main (runUpdate)
 
 main :: Effect Unit
 main = Aff.launchAff_ do
-  runUpdate "travis.nix"
+  runUpdate "ci.nix"
   runUpdate "test/fetch-github.nix"
   runUpdate "test/fetch-url.nix"
   runUpdate "test/fetch-tarball.nix"
