@@ -9,9 +9,9 @@ import Main (runUpdate)
 
 main :: Effect Unit
 main = Aff.launchAff_ do
-  runUpdate "ci.nix"
-  runUpdate "test/fetch-github.nix"
-  runUpdate "test/fetch-url.nix"
-  runUpdate "test/fetch-tarball.nix"
-  runUpdate "test/fetch-nested-set.nix"
+  _ <- runUpdate "ci.nix"
+  _ <- runUpdate "test/fetch-github.nix"
+  _ <- runUpdate "test/fetch-url.nix"
+  _ <- runUpdate "test/fetch-tarball.nix"
+  _ <- runUpdate "test/fetch-nested-set.nix"
   log "done"
