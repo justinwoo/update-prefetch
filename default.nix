@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import ./nixpkgs.nix {} }:
 
 let
   n2n = import ./node2nix.nix {
